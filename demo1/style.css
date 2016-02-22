@@ -1,0 +1,194 @@
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.maincontainer{
+	overflow: hidden;
+	width: 100%;
+	background :#ffbaad;
+}
+
+.footer{
+	background :#000000;
+	color:white;
+    text-align:center;
+    padding:5px;
+}
+
+ul
+{
+    list-style-type: none;
+}
+
+a{
+	text-decoration: none;
+}
+
+.logo {
+  height: 25px;
+  position: relative;
+  float:right;
+  top: 4px;
+  right:8px;
+}
+
+
+
+.header{
+	background :#c0c0c0;
+	color:white;
+    height:80px;
+}
+
+.header div{
+	
+	float:left;	
+}
+
+.header .heading {
+	text-align:center;
+	width:85%;
+	float:left;
+}
+
+.header .menu {
+	text-align:center;
+	float:right;
+	padding: 20 10 0 0;
+	cursor: pointer;
+}
+
+.header .menu label{
+	float: left;
+	height:36px;
+	padding: 0 0 0 10;
+	cursor: pointer;
+}
+
+.header .menu h3{
+	margin-top: 5px;
+    font-size: 1.35em;
+    color: black;
+    margin-right: 10px;
+    font-weight:400;
+}
+
+
+.header .menu_back{
+	width:85%;
+	height:100%;
+	opacity:0.5;
+	position:fixed;
+	z-index:100;
+	background-color:black;
+	top:0;
+	display:none;
+}
+
+.header .menuitems  {
+	 transition:1.3s; 
+	
+	/* right:-100%; */
+	top:0;
+	right:0;
+	height:100%;
+	display:none;
+	z-index:200;
+	position: fixed;
+    width: 15%;
+    background-color: #8BC34A;
+    text-align:center;
+}
+
+.header .menuitems div{
+	float:right;
+}
+
+.header .menuitems li{
+	padding :20 20 20 20;
+	font-size: x-large;
+	border-bottom: 1px solid green;
+}
+
+/* unvisited link */
+.header .menuitems a:link {
+    color: red;
+}
+
+/* visited link */
+.header .menuitems a:visited {
+    color: green;
+}
+
+/* mouse over link */
+.header .menuitems a:hover {
+    color: hotpink;
+}
+
+/* selected link */
+.header .menuitems a:active {
+    color: blue;
+}
+
+.section{
+	overflow:auto;
+	min-height:2000px;
+	display:inline-block;
+}
+
+.section div{
+	float : left;
+}
+
+.nav {
+    line-height:40px;
+    background-color:#eeeeee;
+    height:350px;
+    width:200px;
+    float:left;
+    padding:5px; 
+    
+}
+
+
+/* Scrollbar styles */
+::-webkit-scrollbar {
+width: 12px;
+height: 12px;
+}
+
+::-webkit-scrollbar-track {
+border: 1px solid yellowgreen;
+border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+background: yellowgreen;  
+border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+background: #88ba1c;  
+}
+
+.border{
+	border: 2px solid #ffffff;
+	margin: 0 2 0 0;
+	border-radius: 2px;
+}
+
+
+
