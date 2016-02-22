@@ -1,0 +1,108 @@
+.body{
+	background: linear-gradient(to right, rgba(51,154,152,1) -8%, rgba(95,197,153,1) 43%);	
+	margin:0;
+}
+
+.header{
+	box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.23);
+    background: linear-gradient(to right, rgba(51,154,152,1) -8%, rgba(95,197,153,1) 43%);	
+    position: fixed;
+    width:100%;
+    top:0px;
+    left:0px;
+    right:0px;
+    z-index:9;
+}
+
+.style1  div{
+	
+	float:left;
+}
+
+
+.style2 div{
+	
+	float:right;
+}
+
+.footer{
+    font-family: 'Titillium Web', sans-serif;
+    font-size: 18px;
+    font-weight: 300;
+    color: #ffffff;
+    background-color: #351D5F;
+}
+
+.icon {
+    font-family: 'Linearicons-Free';
+        display: inline-block;
+    font-size: 24px;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    border-radius: 50%;
+    
+}
+
+.icon-color-blueJeans {
+    color: #fff;
+    background-color: #5a99e8;
+}
+
+img.loading_arrow {
+    -webkit-animation: spin_delay 5.5s linear infinite;
+    -webkit-animation-delay: 0s;
+    animation: spin_delay 55.5s linear infinite;
+}
+
+@-webkit-keyframes spin_delay {
+  0% {
+    -webkit-transform-origin: center;
+    transform-origin: center;
+    -webkit-transform: rotate3d(0, 0, 1, 0deg);
+    transform: rotate3d(0, 0, 1, 0deg);
+  }
+
+  50%, 100% {
+    -webkit-transform: rotate3d(0, 0, 1, 360deg);
+    transform: rotate3d(0, 0, 1, 360deg);
+  }
+}
+
+@keyframes spin_delay {
+  0% {
+    -webkit-transform-origin: center;
+    -ms-transform-origin: center;
+    transform-origin: center;
+    -webkit-transform: rotate3d(0, 0, 1, 0deg);
+    -ms-transform: rotate3d(0, 0, 1, 0deg);
+    transform: rotate3d(0, 0, 1, 0deg);
+  }
+
+  50%, 100% {
+    -webkit-transform: rotate3d(0, 0, 1, 360deg);
+    -ms-transform: rotate3d(0, 0, 1, 360deg);
+    transform: rotate3d(0, 0, 1, 360deg);
+  }
+}
+
+.section-link {
+    text-decoration: none;
+    color: #ffd063;
+    transition: all 0.2s ease-in;
+    font-size: 22px;
+}
+
+
+.triangle{
+	display: block; */
+    width: 10px;
+     height: 10px; 
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 12px solid #351D5F;
+    position: relative;
+    margin: 0 auto;
+}
+
