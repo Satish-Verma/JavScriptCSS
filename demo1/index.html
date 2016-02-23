@@ -1,42 +1,114 @@
 <html>
 <head>
+<link rel="stylesheet" href="style.css">
+<link href="css/linearicons-free.css" rel="stylesheet">
+<script type="text/javascript" src="js/file1.js"></script>
+<script type="text/javascript" src="js/file2.js"></script>
 
-<link rel="stylesheet" href="css/loginstyle.css">
-<link rel="stylesheet"
-	href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
 </head>
 <body>
-	<div class="center_div">
-		<div class="header">
-			<div class="user">
-				<img src="https://dashboard.izooto.com/assets/img/bell2.png"
-					class="animate">
+<div class="maincontainer">
+	<div class="header">
+			<div class="heading">
+				<h1>JS, HTML And CSS Practice and Demos</h1>
 			</div>
-			<div class="head_cent">
-				<img onclick="menuFeature();" src="images/logo_login.png">
-
+			<div class="menu"  id="cb">
+				<div class="border">
+				<label ><h3><a href="login.html">Login</h3></a></label>
+				</div>
+				<div class="border">
+				<label onclick="cubes(3);"><h3>MENU</h3></label>
+				<img class="logo" onclick="menuFeature();"
+					src="https://cdn4.iconfinder.com/data/icons/wirecons-free-vector-icons/32/menu-alt-512.png">
+				</div>	
+			</div>
+			<br/>
+			<div class="menu_back" id="hider" onclick="menuFeature();">
 			
-			<div>
-				<span style="font-size: 22px;color:#00bcd4;">Please Sign In</span>
+			</div>
+			<div class="menuitems" id="menuitems">
+				<ul>
+					<li><a onclick="menuFeature();">Close</a></li>
+					<li><a href="">HOME</a></li>
+					<li><a href="">Services</a></li>
+					<li><a href="">Technologies</a></li>
+					<li><a href="">Our Team</a></li>
+					<li><a href="">Contact US</a></li>
+					<li><a href="">Careers</a></li>
+				</ul>
+			</div>
+			
+		</div>
+		<br/>
+		<div class="section">
+			<div class="nav">
+				<ul>
+					<li><a onclick="callExports()">London</a></li>
+					<li><a href="">Paris</a></li>
+					<li><a href="">New York</a></li>
+				</ul>
+			</div>
+			<div class="body">
+				<ul>
+					<li><a href="divPlace.html">Place two div side by side.</a></li>
+					<li><a href="position.html">Position Demo</a></li>
+					<li><a href="display.html">Display Demo</a></li>
+					<li><a href=""></a></li>
+					<li><a href=""></a></li>
+					<li><a href=""></a></li>
+					<li><a href=""></a></li>
+					<li><a href=""></a></li>
+					<li><a href=""></a></li>
+					<li><a href=""></a></li>
+					<li><a href=""></a></li>
+					<li><a href=""></a></li>
+					<li><a href=""></a></li>
+
+				</ul>
 			</div>
 		</div>
-		<div class="divider">
-			<hr />
-		</div>
-		<div class="row">
-			<span class="icon lnr-envelope icon-color-blueJeans"></span>
-			<!-- <label class="lnr-user">E-mail</label> -->
-			<input type="text" />
-		</div>
-		<div class="row">
-			<span class="icon lnr-lock icon-color-blueJeans"></span>
-			<!-- <label>Password</label> -->
-			<input type="password" />
-		</div>
-		<div class="row">
-			<input type="submit" value="Sign In" />
-		</div>
-		<div class="row"></div>
+
+
+	<div class="footer">
+	<h3> Thanks for visiting!</h3>
 	</div>
+
+		
+
+	</div>	
+	
+	
+	<script type="text/javascript">
+	var count=0;
+		var menuFeature = function(){
+			console.log(cubes(3));	
+			alertOne();
+			if (document.getElementById('cb'))
+			{
+				count++;
+			}
+			if(count%2!=0)
+				{
+					//alert("menu clicked!");
+					//document.getElementById('menuitems').style.right ="0px";
+					document.getElementById('menuitems').style.display ="block";
+					document.getElementById('hider').style.display ="block";
+				}
+			else
+			{
+				//alert("menu Unclicked!");
+				//document.getElementById('menuitems').style.right ="-100%";
+				document.getElementById('menuitems').style.display ="none";
+				document.getElementById('hider').style.display ="none";
+			}
+		}
+		
+		var callExports = function(){
+			alert(cubes(9));
+		}
+		
+
+	</script>
+
 </body>
 </html>
