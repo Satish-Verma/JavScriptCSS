@@ -1,0 +1,14 @@
+foo({
+  "meta": {
+    "status": 200,
+    "X-RateLimit-Limit": "5000",
+    "X-RateLimit-Remaining": "4966",
+    "X-RateLimit-Reset": "1372700873",
+    "Link": [ // pagination headers and other links
+      ["https://api.github.com?page=2", {"rel": "next"}]
+    ]
+  },
+  "data": {
+    // the data
+  }
+})
