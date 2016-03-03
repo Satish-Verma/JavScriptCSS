@@ -1,0 +1,153 @@
+<html>
+<head>
+
+<link rel="stylesheet"
+	href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
+
+<style>
+div.glass:hover {
+	background-color: #dedefe;
+	cursor: crosshair;
+	
+}
+
+.glass {
+	
+	left: 200px;
+	top : 200px;
+	position:absolute;
+	display:block;
+	
+}
+
+.glassZoom {
+	background-image:
+		url('http://assets.stockopedia.com/redesign/stockreport.png');
+	height: 250px;
+	width: 250px;
+	border-radius: 50%;
+	
+	top: 10;
+	left: 10;
+	cursor: crosshair;
+	box-shadow: 0 0 0 7px rgba(255, 255, 255, 0.85), 0 0 7px 7px rgba(0, 0, 0, 0.25), inset 0 0 40px 2px rgba(0, 0, 0, 0.25);
+	display: none;
+	position: absolute;
+	background-repeat: no-repeat;
+}
+
+.flipper{
+	width: 600px;
+	margin-left: 100px;
+	transition: 0.6s;
+	transform-style: preserve-3d;
+	position: relative;
+}
+
+
+.flipper:hover, .flipper.hover .flipper {
+	transform: rotateY(180deg);
+}
+
+.front{
+	display:block;
+	border: 2px solid black;
+	background-color : #00bcd4;
+	width: 300px;
+}
+
+.back{
+	display:none;
+	border: 2px solid black;
+	background-color : #FF7600;
+	width:400px;
+	transform: rotateY( 180deg );
+}
+
+.front, .back {
+	backface-visibility: hidden;
+
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+/* front pane, placed above back */
+.front {
+	z-index: 2;
+	/* for firefox 31 */
+	transform: rotateY(0deg);
+}
+
+/* back, initially hidden pane */
+.back {
+	transform: rotateY(180deg);
+}
+</style>
+<script>
+	function myFun(event) {
+		var glass = document.getElementById("glass");
+		var glassZoom = document.getElementById("glassZoom");
+		console.log(event.x + " " + event.y);
+		var x = event.clientX; 		// Get the horizontal coordinate
+		var y = event.clientY; 		// Get the vertical coordinate
+		var coor = "X coords: " + x + ", Y coords: " + y;
+		console.log(coor);
+		glassZoom.style.display = "block";
+		glassZoom.style.left = x - 150;
+		glassZoom.style.top = y - 150;
+		
+		
+		glassZoom.style.backgroundPosition = "" + (295 - (x)) + " " + (320-y);
+		if(x<200 || x>(200+glass.offsetWidth) || y<200 || y>(200+glass.offsetHeight)){
+			glassZoom.style.display = "none";
+			
+		}
+	}
+	
+	function myFlip(event) {
+		var front = document.getElementById("front");
+		var back = document.getElementById("back");
+		
+		if(event.currentTarget.id=="front")
+		{
+			front.style.display = "none";
+			back.style.display = "block";
+		}
+		else if(event.currentTarget.id=="back")
+		{
+			front.style.display = "block";
+			back.style.display = "none";
+		}
+	}
+</script>
+</head>
+<body >
+	<div>
+		<img class="glass" id="glass" onmousemove="myFun(event);" src='http://assets.stockopedia.com/redesign/stockreport.png' 
+			style=" width: 600px; background-repeat: no-repeat;" ></img>
+
+		<div class="glassZoom" id="glassZoom" onmousemove="myFun(event);"></div>
+
+	</div>
+	
+	<div class="flipper">
+		<div class="front" id="front" onmouseenter="myFlip(event);">
+			<ul>
+				<li><span>1. PNB 1500</span></li>
+				<li><span>2. PNB 2500</span></li>
+				<li><span>3. PNB 3500</span></li>
+				<li><span>4. PNB 5500</span></li>
+			</ul>
+		</div>
+		<div class="back" id="back" onmouseleave="myFlip(event);">
+			<ul>
+				<li><span>1. SBI X10</span></li>
+				<li><span>2. SBI X20</span></li>
+				<li><span>3. SBI X30</span></li>
+				<li><span>4. SBI X50</span></li>
+			</ul>
+		</div>
+	</div>
+</body>
+</html>
