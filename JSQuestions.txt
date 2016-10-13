@@ -1,0 +1,865 @@
+Q: console.log(+2);
+= 2
+
+Q: console.log(+"2");
+= 2
+
+Q: console.log(-"2");
+= -2
+
+Q: console.log(typeof "2");
+= strign
+
+Q: console.log(typeof (+"2"));
+= number
+
+Q: console.log("2"+3+4);
+= 234
+
+Q: console.log(2+3+"4");
+= 54
+
+Q: console.log(+"2"+3);
+= 5
+
+Q: console.log(2 + +"3");	//+"3" = 3
+= 5
+
+Q: console.log(2 + -"3");
+= -1
+
+Q: console.log(1 - - "2");	//-"2" = -2
+= 3
+
+Q: console.log(2 + +"hi");
+= NaN(Not a Number)
+
+Q: How do I convert a float number to a whole number in JavaScript?
+=  Positive :
+-------------
+value = 5.5
+
+Math.floor(value) //  5
+Math.ceil(value)  //  6
+Math.round(value) //  6
+Math.trunc(value) //  5
+parseInt(value)   //  5
+~~value           //  5	   (Using Bitwise NOT operator)
+value | 0         //  5    (Using Bitwise OR operator)
+value >> 0        //  5	   
+value >>> 0       //  5
+value - value % 1 //  5
+
+Negative:
+----------
+value = -5.5
+
+Math.floor(value) // -6
+Math.ceil(value)  // -5
+Math.round(value) // -5
+Math.trunc(value) // -5
+parseInt(value)   // -5
+value | 0         // -5
+~~value           // -5
+value >> 0        // -5
+value >>> 0       // 4294967291
+value - value % 1 // -5
+
+
+Q: What is the output of following?
+   1. console.log({}+ {});
+   2. console.log(+{});
+   3. console.log({}+ +{});
+   4. console.log({}+ []);
+   5. console.log({}+ []+{});
+== 1. [object Object][object Object] 	//(for two {} printed [object Object])
+   2. NaN
+   3. [object Object] NaN
+   4. [object Object] 		//(nothing print for [], only [object Object]print for one {})
+   5. [object Object][object Object]  // same as above nothing print for [].
+   
+Q: What is the output of 
+	console.log({}==={}); and console.log([]===[]);
+== false  false. (both will be treated as two different objects).
+
+Q: What is the output of
+   var obj1 = {};
+   
+var obj2 = obj1;
+
+   console.log(obj1 === obj2);
+=  true
+
+
+
+
+Regarding the specific output of
+
+console.log(1 +  + "2");
+Run it on your browser console. The better question is why does it output what it does -
+
+console.log(1 +  + "2");
+              ^
+That is the binary + operator, which will concatenate strings or add numbers.
+
+console.log(1 +  + "2");
+                 ^
+That one is the unary + operator, which converts "2" to a number.
+In JavaScript it is possible to use the + operator alone before a single element. This indicates a math operation and tries to convert the element to a number. If the conversion fails, it will evaluate to NaN. This is especially useful when one wants to convert a string to a number quickly, but can also be used on a select set of other types.
+
+The unary + operator, when used on types other than string, will internally attempt to call valueOf() or toString() (in that order) and then attempt to convert the result to a number. Thusly, the unary + operator can successfully convert many of the native JS types with certain restrictions:
+
+Q: 1. console.log(1 +  -"1" + "2");
+
+   2. console.log( "A" + "B" + "2");
+
+   3. console.log( "A" + "B" + 2);
+   4. console.log( "A" - "B" + "2");
+   
+5. console.log( "A" - "B" + 2);
+A= 1. 02 
+   2. AB2
+   3. AB2	
+   4. Nan2
+   ("A" - "B" + "2" Outputs: "NaN2" Explanation: Since the - operator can not be applied to strings, and since neither "A" nor "B" can be converted to numeric values, "A" - "B" yields NaN which is then concatenated with the string "2" to yield “NaN2”.)
+   3. Nan
+   (As exlained above "A" - "B" yields NaN. But any operator applied to NaN with any other numeric operand will still yield NaN.)
+
+------------
+
+Q:function bob(a)  {
+
+      a = 5;
+
+      console.log(
+arguments[0]);
+
+  };
+  function bob(a,b)  {
+
+      a = 5;
+
+      console.log(
+arguments[0], arguments[1]);
+
+  };
+
+  bob(9,9,9);
+A= 5 9
+
+Q: function bob(a,b)  {
+
+      a = 5;
+
+      console.log(
+arguments[0], arguments[1]);
+
+  };
+
+   function bob(a)  {
+
+      a = 5;
+
+      console.log(
+arguments[0]);
+
+  };
+
+  bob(9,9,9);
+A= 5
+
+Q: function bob(a,b)  {
+
+      a = 5;
+
+      console.log(
+arguments[0], arguments[1]);
+
+  };
+
+   function bob(a)  {
+
+      a = 5;
+
+      console.log(
+arguments[0], arguments[1], arguments[2]);
+
+  };
+
+  bob(9,9,9);
+A= 5 9 9
+
+Q: function bob(a,b)  {
+
+      a = 5;
+
+      console.log(
+arguments[0], arguments[1]);
+
+  };
+
+  bob(9,9,9);
+A= 5 9 9
+
+Q: function bob(a,b, c)  {
+
+      a = 5;
+
+      console.log(
+arguments[0], arguments[1], arguments[2]);
+
+  };
+
+   function bob(a, b)  {
+
+      a = 5;
+
+      console.log(
+arguments[0], arguments[1]);
+
+  };
+
+  bob(9,9,9);
+A= 5 9
+so whatever is defined latest that will be executed.
+
+Q: console.log((10, 1));
+A= 1
+
+Q: console.log((10, 100));
+A= 100  (later one will be printed);
+
+Q: [a, b, ...rest] = [1, 2, 3, 4, 5];
+   console.log(a); // 1 
+   console.log(b); // 2
+   console.log(rest); // [3, 4, 5]
+A = answers are in comments.
+
+
+Q: var a=(console.log(1),console.log(2),console.log(3),4);
+   console.log(a);
+A= 4
+
+Q: var a=(console.log(1),console.log(2),console.log(3));
+   console.log(a);
+A= undefined
+
+Q: What is the output of alert("My", "Name", "is", "satty");
+== It only shows you "My" in alert, and rest it will not display.
+
+Q: What is the output of console.log("My", "Name", "is", "satty");
+== output is "My Name is satty".
+
+Q: How do you get the variable is object or array?
+==
+Way 1
+------
+var arr = []; (or) arr = new Array();
+var obj = {}; (or) arr = new Object();
+
+arr.constructor.prototype.hasOwnProperty('push') //true (This is an Array) bcz array has own prototype function push.
+obj.constructor.prototype.hasOwnProperty('push') // false (This is an Object)
+
+Way 2
+-----
+var arr = []; 
+var obj = {}; 
+console.log(Object.prototype.toString.call(arr));	//prints [object Array]
+  means obj is array.
+console.log(Object.prototype.toString.call(obj));	//prints [object Object] means obj is object.
+
+Way 3:
+-----
+All objects inherit a constructor property from their prototype:
+var o = {};
+
+console.log(o.constructor === Object); // true
+
+console.log(o.constructor === Array); // false
+
+var a = [];
+
+console.log(a.constructor === Array); // true
+
+console.log(a.constructor === Object); // false
+
+var n = new Number(3);
+
+console.log(n.constructor === Number); // true
+
+Q: Javascript copy array to new array ?
+== 
+Way1:
+---
+You can use the .slice method:
+var old = ["Apples", "Bananas"];
+var newArr = old.slice(0);
+newArr.reverse(); 
+// now newArr is ["Bananas", "Apples"] and old is ["Apples", "Bananas"]
+Array.prototype.slice returns a shallow copy of a portion of an array. Giving it 0 as the first parameter means you are returning a copy of all the elements (starting at index 0 that is)
+Way 2:
+------
+copy one by one in other array using push method.
+
+
+
+Q: How do you print consecutive values in setTimeout in for-loop?
+I have this script:
+for (var i = 1; i <= 5; i++) {
+    setTimeout(function() { console.log(i); }, 100);
+}
+But 5 is alerted five times, instead of 1, 2, 3, 4 and 5.
+==  This is because:
+1. The timeout function callbacks are all running well after the completion of the loop. In fact, as timers go, even if it was setTimeout(.., 0) on each iteration, all those function callbacks would still run strictly after the completion of the loop, that's why 3 was reflected!
+2. all two of those functions, though they are defined separately in each loop iteration, are closed over the same shared global scope, which has, in fact, only one i in it.
+Way1:
+-----
+You can use an immediately-invoked function expression (IIFE) to create a closure around setTimeout:
+for (var i = 1; i <= 3; i++) {
+    (function(index) {
+        setTimeout(function() { alert(index); }, i * 1000);
+    })(i);
+}
+Way2:
+------
+You can use bind method 
+if you want to show as log then solution is:
+for (var i = 1; i <= 5; i++) 
+{
+    
+	setTimeout(console.log.bind(console,i), 1000);
+
+}
+if you want to show as alert then solution is:
+for (var i = 1, j = 1; i <= 3; i++, j++) {
+    setTimeout(function() {
+        alert(this);
+    }.bind(i), j * 100);
+}
+
+Q: How do you get a variable is global object?
+= The global scope, the space in which global variables live, can also be approached as an object in JavaScript. Each global variable is present as a property of this object. In browsers, the global scope object is stored in the window variable.
+var myVar = 10;
+console.log("myVar" in window);		// ? true
+or
+console.log(window.myVar);		// ? 10
+
+Q: How do you create a list in javascript?
+=  A list is a nested set of objects, with the first object holding a reference to the second, the second to the third, and so on.
+var list = {
+  value: 1,
+  rest: {
+    value: 2,
+    rest: {
+      value: 3,
+      rest: null
+    }
+  }
+};
+The resulting objects form a chain, like this:
+	 ----------------
+	| value:1 | rest |
+	 ------------+---
+		     |	     -----------------	
+		      -----> | value:2 | rest |
+			     -------------+---	
+					  | 	     ----------------------		
+					   -------> |  value:3 | rest:null |
+						     ----------------------	
+
+Q: Can we add some extra propetry to string?
+= We can read properties like length and toUpperCase from string values. But if you try to add a new property, it doesn’t stick.
+var myString = "Fido";
+myString.myProperty = "value";
+console.log(myString.myProperty);  // ? undefined
+Values of type string, number, and Boolean are not objects, and though the language doesn’t complain if you try to set new properties on them, it doesn’t actually store those properties. The values are immutable and cannot be changed.
+Most values in JavaScript have properties, the exceptions being "null" and "undefined". Properties are accessed using value.propName or value["propName"]. 
+
+Q: How do you serve Object as a map in javascript?
+= Objects can also serve as maps, associating values with names. The "in" operator can be used to find out whether an object contains a property with a given name. The same keyword can also be used in a for loop (for (var name in object)) to loop over an object’s properties.
+var map = {};
+function storePhi(event, phi) {
+  map[event] = phi;
+}
+storePhi("pizza", 0.069);
+storePhi("touched tree", -0.081);
+console.log("pizza" in map); 		// ? true
+console.log(map["touched tree"]);	// ? -0.081
+for (var event in map)
+  console.log("The correlation for '" + event + "' is " + map[event]);
+// ? The correlation for 'pizza' is 0.069
+// ? The correlation for 'touched tree' is -0.081
+
+Q: How do you get all the keys of an object?
+=  Using Object.keys(objectvar) method:
+var person = { age: 18 };
+person.name = 'Joshua';
+person['color'] = 'Red';
+Object.keys(person); 	//==> ['age', 'name', 'color']
+
+Q: What does an Enumerable and Non-Enumerable properties in Javascript?
+=  It isn't very common in the wild but JavaScript (as of ES5) does support non-enumerable properties. That is to say, objects can have properties that don't show up when you do a "for...in" loop over the object or use "Object.keys()" to get an array of property names.
+An enumerable property is one that can be included in and visited during for..in loops (or a similar iteration of properties, like Object.keys()).
+If a property isn't identified as enumerable, the loop will ignore that it's within the object.
+Each of these properties still exists on the object:
+A for..in loop then iterates through the object's property names.
+
+var foo = { bar: 1, baz: 2};
+for (var prop in foo)
+    console.log(prop); 		    // outputs 'bar' and 'baz'
+console.log('constructor' in foo); // true
+console.log('toString' in foo);    // true
+// etc.
+But, they're skipped (or "not counted") by the for..in loop because they aren't enumerable.
+To create a non-enumerable property we have to use "Object.defineProperty()". A special method for creating properties on an object.
+
+var person = { age: 18 };
+Object.defineProperty(person, 'name', { value: 'Joshua', enumerable: false });		// set name as non-enumerable
+Object.defineProperty(person, 'city', { value: 'NY', enumerable: true});		// set name as enumerable
+person.name; 		// 'Joshua'
+Object.keys(person);    // ['age', "city"] but name is not shown in keys
+
+All properties that we create by simply assigning to them are enumerable. The standard properties in Object.prototype are all nonenumerable, which is why they do not show up in such a for/in loop.
+
+It is possible to define our own nonenumerable properties by using the Object.defineProperty function, which allows us to control the type of property we are creating.
+Object.defineProperty(Object.prototype, "hiddenNonsense",
+                      {enumerable: false, value: "hi"});	// here we are creating the prototpye for object.
+prototypes are non-enumerable until we override it from own. so when we use for..in loop or Object.keys() method it will skip prototypes.
+but when we check with console.log("hiddenNonsense" in person); it will give us true.
+
+Q: How to create an object without prototype?
+= using Object.create(null) method:
+var dict1 = Object.create(null);
+
+var dict2 = {};
+
+console.log('toString' in dict1);
+	//returns false.
+console.log('toString' in dict2);	//returns true.
+bcz toString is a prototype in all objects. but dict1 returning null.
+There are 2 types of objects: Normal Objects and prototype-less objects:
+Normal objects:
+Usually, each object you create in JavaScript has at least Object.prototype in its prototype chain. The prototype of Object.prototype is null, so that’s where most prototype chains end.
+    > Object.getPrototypeOf({}) === Object.prototype
+    true
+    > Object.getPrototypeOf(Object.prototype)
+    null
+Prototype-less objects are better maps:
+Prototype-less objects have two advantages as maps:
+1. Inherited properties (pitfall #1) are not an issue, any more, simply because there are none. Therefore, you can now freely use the in operator to detect whether a property exists and brackets to read properties.
+2. Soon: __proto__ is disabled. In ECMAScript 6, the special property __proto__ will be disabled if Object.prototype is not in the prototype chain of an object. You can expect JavaScript engines to slowly migrate to this behavior, but it is not yet very common.
+The only disadvantage is that you’ll lose the services provided by Object.prototype. For example, a dict object can’t be automatically converted to a string, any more:
+    > console.log('Result: '+obj)
+    TypeError: Cannot convert object to primitive value
+But that is not a real disadvantage, because it isn’t safe to directly invoke methods on a dict object, anyway.
+if you will run:
+console.log(dict1);	// here you will get Object with no properties
+console.log(dict2);	// here you will get Object with __proto__ object. inside this __proto__ you will get toString() method.
+so console.log(dict2.__proto__.toString());  //will give you the string representation of dict2 project which is not in dict1.
+
+
+Q: What happens when you extract a method from objects?
+= Extracting Methods:
+If you extract a method, it loses its connection with the object. On its own, the function is not a method anymore, and this has the value undefined (in strict mode).
+As an example, let’s go back to the object jane:
+'use strict';
+var jane = {
+    name: 'Jane',
+
+    describe: function () {
+        return 'Person named '+this.name;
+    }
+};
+We want to extract the method describe from jane, put it into a variable func, and call it. However, that doesn’t work:
+  var func = jane.describe;
+  func()
+o/p: TypeError: Cannot read property 'name' of undefined
+The solution is to use the method bind() that all functions have. It creates a new function whose this always has the given value:
+  var func2 = jane.describe.bind(jane);
+  func2()
+o/p= 'Person named Jane'
+
+Q: Describe some arrays mehtods?
+= Arrays have many methods (see Array Prototype Methods). Here are a few examples:
+> var arr = [ 'a', 'b', 'c' ];
+
+> arr.slice(1, 2)  // copy elements
+[ 'b' ]
+> arr.slice(1)
+[ 'b', 'c' ]
+
+> arr.push('x')  // append an element
+4
+> arr
+[ 'a', 'b', 'c', 'x' ]
+
+> arr.pop()  // remove last element
+'x'
+> arr
+[ 'a', 'b', 'c' ]
+
+> arr.shift()  // remove first element
+'a'
+> arr
+[ 'b', 'c' ]
+
+> arr.unshift('x')  // prepend an element
+3
+> arr
+[ 'x', 'b', 'c' ]
+
+> arr.indexOf('b')  // find the index of an element
+1
+> arr.indexOf('y')
+-1
+
+> arr.join('-')  // all elements in a single string
+'x-b-c'
+> arr.join('')
+'xbc'
+> arr.join()
+'x,b,c'
+
+Q: How you use foreach loop for iterating arrays?
+= [ 'a', 'b', 'c' ].forEach(
+    function (elem, index) {  // (1)
+        console.log(index + '. ' + elem);        // prints 0. a   1. b  2. c
+    });
+
+Q: What is coercion in Javascript?
+= In JavaScript, the main way of dealing with a value whose type doesn’t fit is to coerce it to the correct type. Coercion means implicit type conversion. Most operands coerce:
+> '3' * '4'
+= 12
+JavaScript’s built-in conversion mechanisms support only the types Boolean, Number, String, and Object. There is no standard way to convert an instance of one constructor to an instance of another constructor.
+
+
+Q: what is the difference between primitive and nonprimitive values in Javascript?
+= Primitive Values:
+------------------- 
+The following are all of the primitive values (primitives for short):
+  --------------------------------------
+ | Booleans: true, false		|
+ | Numbers: 1736, 1.351 		|
+ | Strings: 'abc', "abc" 		|
+ |Two “nonvalues”: undefined, null 	|
+  --------------------------------------
+Primitives have the following characteristics:
+A. Compared by value
+The “content” is compared:
+> 3 === 3
+true
+> 'abc' === 'abc'
+true
+
+B. Always immutable
+Properties can’t be changed, added, or removed:
+> var str = 'abc';
+
+> str.length = 1; // try to change property `length`
+> str.length      // ? no effect
+= 3 
+
+> str.foo = 3; // try to create property `foo`
+> str.foo      // ? no effect, unknown property
+= undefined
+
+C. A fixed set of types
+You can’t define your own primitive types
+
+Objects or Non-Primitive Values: 
+-------------------------------
+All nonprimitive values are objects. The most common kinds of objects are:
+ ------------------------------------------------------------------------------------
+|  1. Plain objects (constructor Object) can be created by object literals 
+|   {
+|     firstName: 'Jane',
+|     lastName: 'Doe'
+|   }
+| The preceding object has two properties: the value of property firstName is 'Jane', and the value of property lastName is 'Doe'.
+| 2. Arrays (constructor Array) can be created by array literals :
+|   [ 'apple', 'banana', 'cherry' ]
+| The preceding array has three elements that can be accessed via numeric indices. For example, the index of 'apple' is 0.
+| 3. Regular expressions (constructor RegExp) can be created by regular expression literals :
+|    /^a+b+$/
+ -------------------------------------------------------------------------------------
+Objects have the following characteristics:
+A. Compared by reference
+Identities are compared; every object has its own identity:
+> ({} === {})  // two different empty objects
+false
+
+> var obj1 = {};
+> var obj2 = obj1;
+> obj1 === obj2
+true
+
+B. Mutable by default
+You can normally freely change, add, and remove properties :
+> var obj = {};
+> obj.foo = 123; // add property `foo`
+> obj.foo
+123
+
+C. User-extensible
+Constructors  can be seen as implementations of custom types (similar to classes in other languages).
+
+Q: How Wrapper Objects Are Different from Primitives?
+=  Primitive values such as 'abc' are fundamentally different from wrapper instances such as new String('abc'):
+> typeof 'abc'  // a primitive value
+= 'string'
+> typeof new String('abc')  // an object
+= 'object'
+> 'abc' instanceof String  // never true for primitives
+false
+> 'abc' === new String('abc')
+= false
+Wrapper instances are objects, and there is no way of comparing objects in JavaScript, not even via lenient equals == 
+> var a = new String('abc');
+> var b = new String('abc');
+> a == b
+= false
+>a===b
+= false;
+
+Q: How do you wrap and unwrap primitives?
+= Wrapping and Unwrapping Primitives
+There is one use case for wrapper objects: you want to add properties to a primitive value. Then you wrap the primitive and add properties to the wrapper object. 
+You need to unwrap the value before you can work with it.
+1. Wrap a primitive by invoking a wrapper constructor:
+new Boolean(true)
+new Number(123)
+new String('abc')
+
+2. Unwrap a primitive by invoking the method valueOf(). All objects have this method (as discussed in Conversion to Primitive):
+> new Boolean(true).valueOf()
+true
+> new Number(123).valueOf()
+123
+> new String('abc').valueOf()
+'abc'
+
+Converting wrapper objects to primitives properly extracts numbers and strings, but not booleans:
+> Boolean(new Boolean(false))  // does not unwrap
+true
+> Number(new Number(123))  // unwraps
+123
+> String(new String('abc'))  // unwraps
+'abc'
+
+Q: How Primitives Borrow Their Methods from Wrappers?
+= Primitives Borrow Their Methods from Wrappers
+Primitives don’t have their own methods and borrow them from wrappers:
+> 'abc'.charAt === String.prototype.charAt
+= true
+"Sloppy mode" and "strict mode" handle this borrowing differently. In sloppy mode, primitives are converted to wrappers on the fly:
+String.prototype.sloppyMethod = function () {
+    console.log(typeof this); // object
+    console.log(this instanceof String); // true
+};
+
+''.sloppyMethod(); // call the above method
+In strict mode, methods from the wrapper prototype are used transparently:
+String.prototype.strictMethod = function () {
+    'use strict';
+    console.log(typeof this); 		 // string  // Note here type of this is string not object.
+    console.log(this instanceof String); // false   //Note in strict mode this will not be instance of String.
+};
+
+''.strictMethod(); // call the above method
+
+Q: What is the output of 
+   var x ;
+
+   console.log(x);
+   
+var x = 4;
+
+   var x = 5;
+=  5  (in case of simple statements x will get value from last statement, but if it will be in function, hoisting applies)
+
+Q: function f() {
+ 
+   var x ;
+
+   console.log(x);
+
+   var x = 4;
+
+   var x = 5;
+
+   }
+   
+f();
+=  "undefined" will be printed. [ because inside function, Hoisting only puts the declaration of all variables to top not the values.}
+
+Q: What is an IIFE?
+=  This is a common pattern in JavaScript. Ben Alman suggested it be called immediately invoked function expression (IIFE, pronounced “iffy”). In general, an IIFE looks like this:
+
+(function () { // open IIFE
+    // inside IIFE
+}()); // close IIFE
+
+Here are some things to note about an IIFE:
+1. It is immediately invoked.
+2. It must be an expression.
+3. The trailing semicolon is required.
+
+Q: How you convert a number into string in Javascript?
+= With method invocations, it is important to distinguish between the floating-point dot and the method invocation dot. Thus, you cannot write "1.toString();" you must use one of the following alternatives:
+1.toString()	// gives you the "Uncaught SyntaxError: Invalid or unexpected token" Error
+but you can access like any of following: 
+1..toString()
+1 .toString()  // space before dot
+(1).toString()
+1.0.toString()
+
+Q: What is Object.defineProperty() method?
+=  The Object.defineProperty() method defines a new property directly on an object, or modifies an existing property on an object, and returns the object.
+Syntax:
+Object.defineProperty(obj, prop, descriptor)
+Ex- 
+var o = {}; // Creates a new object
+// Example of an object property added with defineProperty with a data property descriptor
+Object.defineProperty(o, 'a', {
+  value: 37,
+  writable: true,
+  enumerable: true,
+  configurable: true
+});
+
+Q: What is JSON.stringify and JSON.parse function?
+= JavaScript gives us functions, JSON.stringify and JSON.parse, that convert data from and to this format. The first takes a JavaScript value and returns a JSON-encoded string. The second takes such a string and converts it to the value it encodes.
+
+var string = JSON.stringify({name: "X", born: 1980});
+console.log(string);
+// ? {"name":"X","born":1980}
+console.log(JSON.parse(string).born);
+// ? 1980
+
+Q: Can you Share Data Between Objects via a Prototype?
+= Yes.
+
+Q: “let” keyword vs “var” keyword in Javascript?
+= The difference is scoping. var is scoped to the nearest function block and let is scoped to the nearest enclosing block (both are global if outside any block), which can be smaller than a function block.
+Also, variables declared with let are not accessible before they are declared in their enclosing block. As seen in the demo, this will throw an exception.
+var:
+function varTest() {
+  var x = 1;
+  if (true) {
+    var x = 2;  // same variable!
+    console.log(x);  // 2
+  }
+  console.log(x);  // 2
+}
+
+let:
+function letTest() {
+  let x = 1;
+  if (true) {
+    let x = 2;  // different variable
+    console.log(x);  // 2
+  }
+  console.log(x);  // 1
+}
+
+
+Q: What does “use strict” do in JavaScript, and what is the reasoning behind it?
+= The statement "use strict"; instructs the browser to use the Strict mode, which is a reduced and safer feature set of JavaScript.
+This strict context prevents certain actions from being taken and throws more exceptions.
+List of features (non-exhaustive)
+--------------------------------
+1. Disallows global variables. (Catches missing var declarations and typos in variable names)
+2. Silent failing assignments will throw error in strict mode (assigning NaN = 5;)
+3. Attempts to delete undeletable properties will throw (delete Object.prototype)
+4. Requires all property names in an object literal to be unique (var x = {x1: "1", x1: "2"})
+5. Function parameter names must be unique (function sum (x, x) {...})
+6. Forbids octal syntax (var x = 023; some devs assume wrongly that a preceding zero does nothing to change the number.)
+7. Forbids the with keyword
+8. eval in strict mode does not introduce new variables
+9. Forbids deleting plain names (delete x;)
+10.Forbids binding or assignment of the names eval and arguments in any form
+11.Strict mode does not alias properties of the arguments object with the formal parameters. (i.e. in function sum (a,b) { return arguments[0] + b;} This works because arguments[0] is bound to a and so on. )
+12.arguments.callee is not supported
+
+Q: JavaScript function declaration syntax: var fn = function() {} vs function fn() {} ?
+= The two ways are:
+function expression:
+----------------------
+var functionOne = function() {
+    // Some code
+};
+function declaration:
+---------------------
+function functionTwo() {
+    // Some code
+}
+
+The difference is that functionOne is a function expression and so only defined when that line is reached, whereas functionTwo is a function declaration and is defined as soon as its surrounding function or script is executed (due to hoisting).
+
+For example, a function expression:
+ --------------------------------------
+| functionOne();
+|
+|  var functionOne = function() {
+|    console.log("Hello!");
+|  };
+ --------------------------------------
+// TypeError: undefined is not a function
+
+And, a function declaration:
+ --------------------------------------
+|  functionTwo();
+|
+|  function functionTwo() {
+|    console.log("Hello!");
+|  }
+ --------------------------------------
+// Outputs: "Hello!"
+
+Q: Sort array of objects by string property value in JavaScript?
+=  you can pass a callback function in object.sort method to override sort method.
+var People = [
+
+    {Name: "Satish", Surname: "Surname"},
+
+    {Name:"Abhay", Surname:"ZZZ"},
+
+    {Name: "Mahesh", Surname: "AAA"
+}
+];
+
+People.sort( function(val1, val2){
+ 
+  if(val1.Name > val2.Name)
+
+      return 1;
+ 
+  else 
+     
+      return -1;
+
+});
+
+for(var i in People)
+
+   console.log(People[i]);
+Output:  Object {Name: "Abhay", Surname: "ZZZ"}
+ 	 Object {Name: "Mahesh", Surname: "AAA"}
+	 Object {Name: "Satish", Surname: "Surname"}
+
+Q: What is Callback function in Javascript?
+= Just like we pass variables/ objects as an arguments in the function, we can pass function as an arguments in the function. We also call it Higher Order Function.
+Callbacks functions can be synchronous or asynchronous.
+Callback Functions Are Closures. 
+Synchronous callbacks are invoked in the original thread, so do not create thread-safety concerns by themselves.
+Ex of Synchronous Callback:
+array.foreach(item){
+ console.log(item.index);
+}
+console.log("After");
+it is synchronous because after will be printed after iteration of full array.
+Ex of Asynchronous Callback:
+setTimeout(function(){
+  console.log("1 sec later");
+}, 1000);
+console.log("first");
